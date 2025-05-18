@@ -221,7 +221,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../generators/shacl.html">SHACL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../generators/owl.html">OWL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../generators/markdown.html">Markdown</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../generators/docgen.html">Docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../generators/docgen.html">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../generators/erdiagram.html">ER Diagrams</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../generators/yuml.html">YUML</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../generators/plantumlgen.html">PlantUML Diagram Generator</a></li>
@@ -239,6 +239,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../generators/excel.html">Excel Spreadsheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../generators/csv.html">CSV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../generators/yaml.html">Yaml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../generators/pandera.html">Pandera</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../../generators/common/index.html">Common</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Common</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../generators/common/build.html">Build</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../generators/common/lifecycle.html">Lifecycle</a></li>
@@ -259,6 +260,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../howtos/model-property-graphs.html">How to make a property graph schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../howtos/generate-ai-prompts.html">How to Generate AI prompts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../howtos/deprecating-elements.html">Deprecating elements while maintaining PURLs and other URIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../howtos/ontologies-as-values.html">Using ontology terms as values in data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples of use</a></li>
@@ -376,16 +378,16 @@
                     <span class="p">)</span>
                 <span class="n">slot_range_class</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">schema_view</span><span class="o">.</span><span class="n">get_class</span><span class="p">(</span><span class="n">slot_def</span><span class="o">.</span><span class="n">range</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">slot_range_class</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">slot_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">location</span> <span class="o">+=</span> <span class="p">[</span><span class="n">slot_def</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+                    <span class="n">slot_location</span> <span class="o">=</span> <span class="n">location</span> <span class="o">+</span> <span class="p">[</span><span class="n">slot_def</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
                     <span class="k">if</span> <span class="n">slot_def</span><span class="o">.</span><span class="n">multivalued</span><span class="p">:</span>
                         <span class="k">if</span> <span class="n">slot_def</span><span class="o">.</span><span class="n">inlined</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">slot_value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
                             <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">slot_value</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                                <span class="k">yield from</span> <span class="n">_do_process</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">slot_range_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">location</span> <span class="o">+</span> <span class="p">[</span><span class="n">k</span><span class="p">])</span>
+                                <span class="k">yield from</span> <span class="n">_do_process</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">slot_range_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">slot_location</span> <span class="o">+</span> <span class="p">[</span><span class="n">k</span><span class="p">])</span>
                         <span class="k">elif</span> <span class="n">slot_def</span><span class="o">.</span><span class="n">inlined_as_list</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">slot_value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
                             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">slot_value</span><span class="p">):</span>
-                                <span class="k">yield from</span> <span class="n">_do_process</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">slot_range_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">location</span> <span class="o">+</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span>
+                                <span class="k">yield from</span> <span class="n">_do_process</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">slot_range_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">slot_location</span> <span class="o">+</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="k">yield from</span> <span class="n">_do_process</span><span class="p">(</span><span class="n">instance</span><span class="p">[</span><span class="n">slot_def</span><span class="o">.</span><span class="n">name</span><span class="p">],</span> <span class="n">slot_range_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span>
+                        <span class="k">yield from</span> <span class="n">_do_process</span><span class="p">(</span><span class="n">instance</span><span class="p">[</span><span class="n">slot_def</span><span class="o">.</span><span class="n">name</span><span class="p">],</span> <span class="n">slot_range_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">slot_location</span><span class="p">)</span>
 
         <span class="k">yield from</span> <span class="n">_do_process</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">context</span><span class="o">.</span><span class="n">target_class</span><span class="p">)</span></div>
 </pre></div>

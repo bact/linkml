@@ -222,7 +222,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../generators/shacl.html">SHACL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/owl.html">OWL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/markdown.html">Markdown</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../generators/docgen.html">Docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generators/docgen.html">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/erdiagram.html">ER Diagrams</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/yuml.html">YUML</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/plantumlgen.html">PlantUML Diagram Generator</a></li>
@@ -240,6 +240,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../generators/excel.html">Excel Spreadsheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/csv.html">CSV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/yaml.html">Yaml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generators/pandera.html">Pandera</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../generators/common/index.html">Common</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Common</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../generators/common/build.html">Build</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../generators/common/lifecycle.html">Lifecycle</a></li>
@@ -260,6 +261,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../howtos/model-property-graphs.html">How to make a property graph schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../howtos/generate-ai-prompts.html">How to Generate AI prompts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../howtos/deprecating-elements.html">Deprecating elements while maintaining PURLs and other URIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howtos/ontologies-as-values.html">Using ontology terms as values in data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples of use</a></li>
@@ -403,6 +405,11 @@ or run <code class="docutils literal notranslate"><span class="pre">linkml</span
 
 <dl class="object">
 <dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">gen-pandera</span></span></dt>
+<dd></dd></dl>
+
+<dl class="object">
+<dt class="sig sig-object">
 <span class="sig-name descname"><span class="pre">golang</span></span></dt>
 <dd><p>Generate Golang types</p>
 </dd></dl>
@@ -541,7 +548,7 @@ or run <code class="docutils literal notranslate"><span class="pre">linkml</span
 <dl class="object">
 <dt class="sig sig-object">
 <span class="sig-name descname"><span class="pre">sqltables</span></span></dt>
-<dd><p>Generate SQL DDL representation</p>
+<dd><p>Generate SQL DDL representation.</p>
 </dd></dl>
 
 <dl class="object">
@@ -571,7 +578,7 @@ or run <code class="docutils literal notranslate"><span class="pre">linkml</span
 <dl class="object">
 <dt class="sig sig-object">
 <span class="sig-name descname"><span class="pre">yuml</span></span></dt>
-<dd><p>Generate a UML representation of a LinkML…</p>
+<dd><p>Generate a yUML representation of a LinkML…</p>
 </dd></dl>
 
 </section>
@@ -866,6 +873,18 @@ should contain one file per example, following the naming convention
 </dd></dl>
 
 <dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-doc-truncate-descriptions">
+<span class="sig-name descname"><span class="pre">--truncate-descriptions</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;truncate_descriptions&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-doc-truncate-descriptions" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether to truncate long (potentially spanning multiple lines) descriptions of classes, slots, etc., in the docs.
+Set to true for truncated descriptions, and false to display full descriptions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-full-doc-subfolder-type-separation">
 <span id="cmdoption-linkml-generate-full-doc-no-subfolder-type-separation"></span><span class="sig-name descname"><span class="pre">--subfolder-type-separation</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-subfolder-type-separation</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-doc-subfolder-type-separation" title="Permalink to this definition">#</a></dt>
 <dd><p>Separate type (class, slot, etc.) outputs in different subfolders for navigation purposes</p>
@@ -916,7 +935,7 @@ YAML, and including it when necessary but not by default (e.g. in documentation 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-full-doc-template-directory">
 <span class="sig-name descname"><span class="pre">--template-directory</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;template_directory&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-doc-template-directory" title="Permalink to this definition">#</a></dt>
-<dd><p>Folder in which custom templates are kept</p>
+<dd><p>Path to the directory with custom jinja2 templates</p>
 </dd></dl>
 
 <dl class="std option">
@@ -983,7 +1002,7 @@ YAML, and including it when necessary but not by default (e.g. in documentation 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-(full)-doc-0">
 <span id="cmdoption-linkml-generate-full-doc-directory"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--directory</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;directory&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-(full)-doc-0" title="Permalink to this definition">#</a></dt>
-<dd><p><strong>Required</strong> Folder to which document files are written</p>
+<dd><p><strong>Required</strong> Path to the directory where you want the Markdown files to be written to</p>
 </dd></dl>
 
 <dl class="std option">
@@ -1336,6 +1355,44 @@ present, then all entities are included.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-full-excel-arg-YAMLFILE">
 <span class="sig-name descname"><span class="pre">YAMLFILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-excel-arg-YAMLFILE" title="Permalink to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="linkml-generate-full-gen-pandera">
+<h4>gen-pandera<a class="headerlink" href="#linkml-generate-full-gen-pandera" title="Permalink to this heading">#</a></h4>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>linkml<span class="w"> </span>generate<span class="w"> </span><span class="o">(</span>full<span class="o">)</span><span class="w"> </span>gen-pandera<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>YAMLFILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-gen-pandera-V">
+<span id="cmdoption-linkml-generate-full-gen-pandera-version"></span><span class="sig-name descname"><span class="pre">-V</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--version</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-gen-pandera-V" title="Permalink to this definition">#</a></dt>
+<dd><p>Show the version and exit.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-gen-pandera-template-file">
+<span class="sig-name descname"><span class="pre">--template-file</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;template_file&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-gen-pandera-template-file" title="Permalink to this definition">#</a></dt>
+<dd><p>Optional jinja2 template to use for class generation</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-gen-pandera-template-path">
+<span class="sig-name descname"><span class="pre">--template-path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;template_path&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-gen-pandera-template-path" title="Permalink to this definition">#</a></dt>
+<dd><p>Optional jinja2 template directory within module</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-gen-pandera-package">
+<span class="sig-name descname"><span class="pre">--package</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;package&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-gen-pandera-package" title="Permalink to this definition">#</a></dt>
+<dd><p>Package name where relevant for generated class files</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-gen-pandera-arg-YAMLFILE">
+<span class="sig-name descname"><span class="pre">YAMLFILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-gen-pandera-arg-YAMLFILE" title="Permalink to this definition">#</a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
@@ -2468,7 +2525,11 @@ YAML, and including it when necessary but not by default (e.g. in documentation 
 </section>
 <section id="linkml-generate-full-markdown">
 <h4>markdown<a class="headerlink" href="#linkml-generate-full-markdown" title="Permalink to this heading">#</a></h4>
-<p>Generate markdown documentation of a LinkML model</p>
+<p>Generate markdown documentation of a LinkML model.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><cite>gen-markdown</cite> is deprecated. Please use <cite>gen-doc</cite> instead.</p>
+</div>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>linkml<span class="w"> </span>generate<span class="w"> </span><span class="o">(</span>full<span class="o">)</span><span class="w"> </span>markdown<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>YAMLFILE
 </pre></div>
 </div>
@@ -3402,7 +3463,7 @@ to include metaclasses. To restore this behavior:</p>
 <dd><p>How to include linkml schema metadata in generated pydantic classes. See docs for MetadataMode for full description of choices. Default (auto) is to include all metadata that can’t be otherwise represented</p>
 <dl class="field-list simple">
 <dt class="field-odd">Options<span class="colon">:</span></dt>
-<dd class="field-odd"><p>MetadataMode.FULL | MetadataMode.EXCEPT_CHILDREN | MetadataMode.AUTO | MetadataMode.NONE</p>
+<dd class="field-odd"><p>full | except_children | auto | None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -4322,7 +4383,7 @@ is conformant to the same LinkML schema.</p>
 </section>
 <section id="linkml-generate-full-sqltables">
 <h4>sqltables<a class="headerlink" href="#linkml-generate-full-sqltables" title="Permalink to this heading">#</a></h4>
-<p>Generate SQL DDL representation</p>
+<p>Generate SQL DDL representation.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>linkml<span class="w"> </span>generate<span class="w"> </span><span class="o">(</span>full<span class="o">)</span><span class="w"> </span>sqltables<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>YAMLFILE
 </pre></div>
 </div>
@@ -4360,6 +4421,28 @@ is conformant to the same LinkML schema.</p>
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqltables-use-foreign-keys">
 <span id="cmdoption-linkml-generate-full-sqltables-no-use-foreign-keys"></span><span class="sig-name descname"><span class="pre">--use-foreign-keys</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-use-foreign-keys</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqltables-use-foreign-keys" title="Permalink to this definition">#</a></dt>
 <dd><p>Emit FK declarations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqltables-default_length_oracle">
+<span class="sig-name descname"><span class="pre">--default_length_oracle</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;default_length_oracle&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqltables-default_length_oracle" title="Permalink to this definition">#</a></dt>
+<dd><p>Default length of varchar based arguments for oracle dialects</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqltables-generate_abstract_class_ddl">
+<span class="sig-name descname"><span class="pre">--generate_abstract_class_ddl</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;generate_abstract_class_ddl&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqltables-generate_abstract_class_ddl" title="Permalink to this definition">#</a></dt>
+<dd><p>A manual override to omit the abstract classes, set to true as a default for testing sake</p>
 <dl class="field-list simple">
 <dt class="field-odd">Default<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
@@ -4890,7 +4973,11 @@ is conformant to the same LinkML schema.</p>
 </section>
 <section id="linkml-generate-full-yuml">
 <h4>yuml<a class="headerlink" href="#linkml-generate-full-yuml" title="Permalink to this heading">#</a></h4>
-<p>Generate a UML representation of a LinkML model</p>
+<p>Generate a yUML representation of a LinkML model</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><cite>gen-yuml</cite> is deprecated. Please use <cite>gen-doc</cite>, <cite>gen-plantuml</cite> or <cite>gen-mermaid-class-diagram</cite>.</p>
+</div>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>linkml<span class="w"> </span>generate<span class="w"> </span><span class="o">(</span>full<span class="o">)</span><span class="w"> </span>yuml<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>YAMLFILE
 </pre></div>
 </div>
@@ -5072,6 +5159,7 @@ is conformant to the same LinkML schema.</p>
 <li><a class="reference internal" href="#linkml-generate-full-doc">doc</a></li>
 <li><a class="reference internal" href="#linkml-generate-full-erdiagram">erdiagram</a></li>
 <li><a class="reference internal" href="#linkml-generate-full-excel">excel</a></li>
+<li><a class="reference internal" href="#linkml-generate-full-gen-pandera">gen-pandera</a></li>
 <li><a class="reference internal" href="#linkml-generate-full-golang">golang</a></li>
 <li><a class="reference internal" href="#linkml-generate-full-golr-views">golr-views</a></li>
 <li><a class="reference internal" href="#linkml-generate-full-graphql">graphql</a></li>

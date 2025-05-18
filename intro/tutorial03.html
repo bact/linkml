@@ -222,7 +222,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../generators/shacl.html">SHACL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/owl.html">OWL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/markdown.html">Markdown</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../generators/docgen.html">Docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generators/docgen.html">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/erdiagram.html">ER Diagrams</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/yuml.html">YUML</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/plantumlgen.html">PlantUML Diagram Generator</a></li>
@@ -240,6 +240,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../generators/excel.html">Excel Spreadsheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/csv.html">CSV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/yaml.html">Yaml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generators/pandera.html">Pandera</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../generators/common/index.html">Common</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Common</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../generators/common/build.html">Build</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../generators/common/lifecycle.html">Lifecycle</a></li>
@@ -260,6 +261,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../howtos/model-property-graphs.html">How to make a property graph schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../howtos/generate-ai-prompts.html">How to Generate AI prompts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../howtos/deprecating-elements.html">Deprecating elements while maintaining PURLs and other URIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howtos/ontologies-as-values.html">Using ontology terms as values in data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples of use</a></li>
@@ -411,12 +413,12 @@
 <span class="w">    </span><span class="nt">age</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">33</span>
 </pre></div>
 </div>
-<p>Running the following command:</p>
+<p>Running the following command will result in errors printed to the console:</p>
 <!-- FAIL -->
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>linkml-validate<span class="w"> </span>-s<span class="w"> </span>personinfo.yaml<span class="w"> </span>bad-data.yaml
 </pre></div>
 </div>
-<p>Will result in:</p>
+<p>Output:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[ERROR] [bad-data.yaml/0] &#39;1-800-kryptonite&#39; does not match &#39;^[\\d\\(\\)\\-]+$&#39; in /persons/0/phone
 [ERROR] [bad-data.yaml/0] &#39;full_name&#39; is a required property in /persons/1
 </pre></div>
@@ -438,7 +440,7 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>linkml-validate<span class="w"> </span>-s<span class="w"> </span>personinfo.yaml<span class="w"> </span>better-data.yaml
 </pre></div>
 </div>
-<p>Will result in:</p>
+<p>Output:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[ERROR] [better-data.yaml/0] &#39;1-800-kryptonite&#39; does not match &#39;^[\\d\\(\\)\\-]+$&#39; in /persons/0/phone
 </pre></div>
 </div>
@@ -463,6 +465,7 @@ to be complete.</p>
 </pre></div>
 </div>
 <p>You can then use the <code class="docutils literal notranslate"><span class="pre">jsonschema</span></code> command that comes with the python library (any jsonschema validator will do here)</p>
+<!-- Note: this will actually fail when executed because 'bad-data.json' does not exist. -->
 <!-- FAIL -->
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jsonschema<span class="w"> </span>-i<span class="w"> </span>bad-data.json<span class="w"> </span>personinfo.schema.json
 </pre></div>

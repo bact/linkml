@@ -222,7 +222,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../generators/shacl.html">SHACL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/owl.html">OWL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/markdown.html">Markdown</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../generators/docgen.html">Docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generators/docgen.html">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/erdiagram.html">ER Diagrams</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/yuml.html">YUML</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/plantumlgen.html">PlantUML Diagram Generator</a></li>
@@ -240,6 +240,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../generators/excel.html">Excel Spreadsheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/csv.html">CSV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/yaml.html">Yaml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generators/pandera.html">Pandera</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../generators/common/index.html">Common</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Common</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../generators/common/build.html">Build</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../generators/common/lifecycle.html">Lifecycle</a></li>
@@ -260,6 +261,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../howtos/model-property-graphs.html">How to make a property graph schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../howtos/generate-ai-prompts.html">How to Generate AI prompts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../howtos/deprecating-elements.html">Deprecating elements while maintaining PURLs and other URIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howtos/ontologies-as-values.html">Using ontology terms as values in data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples of use</a></li>
@@ -390,6 +392,30 @@
 <p>linkml.validators and linkml.utils.validation are the older versions of linkml.validator and have unmaintained, duplicated functionality</p>
 <p><strong>Recommendation:</strong> Update to use linkml.validator</p>
 </section>
+<section id="gen-yuml">
+<h2>gen-yuml<a class="headerlink" href="#gen-yuml" title="Permalink to this heading">#</a></h2>
+<div class="warning admonition">
+<p class="admonition-title">Deprecated</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 1.8.7.</span></p>
+</div>
+<p><em>Removed in 1.10.0</em></p>
+</div>
+<p>gen-yuml has been deprecated and is no longer supported. It has been replaced by more feature-rich diagram generators such as gen-doc (embedded mermaid diagrams), gen-plantuml, gen-mermaid-class-diagram, and gen-erdiagram.</p>
+<p><strong>Recommendation:</strong> Update to use <cite>gen-doc</cite>, <cite>gen-plantuml</cite>, <cite>gen-mermaid-class-diagram</cite>, or <cite>gen-erdiagram</cite></p>
+</section>
+<section id="gen-markdown">
+<h2>gen-markdown<a class="headerlink" href="#gen-markdown" title="Permalink to this heading">#</a></h2>
+<div class="warning admonition">
+<p class="admonition-title">Deprecated</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 1.9.1.</span></p>
+</div>
+<p><em>Removed in 1.10.0</em></p>
+</div>
+<p>gen-markdown has been deprecated in favor of gen-doc, which is the new de-facto generator for generating markdown documentation files (with embedded mermaid class diagrams) from a LinkML schema</p>
+<p><strong>Recommendation:</strong> Update to use <cite>gen-doc</cite></p>
+</section>
 </section>
 
         </article>
@@ -443,6 +469,8 @@
 <li><a class="reference internal" href="#pydanticgen-v1">pydanticgen-v1</a></li>
 <li><a class="reference internal" href="#pydantic-v1">pydantic-v1</a></li>
 <li><a class="reference internal" href="#validators">validators</a></li>
+<li><a class="reference internal" href="#gen-yuml">gen-yuml</a></li>
+<li><a class="reference internal" href="#gen-markdown">gen-markdown</a></li>
 </ul>
 </li>
 </ul>
